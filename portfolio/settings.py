@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import os
-from pathlib import Path
 import dj_database_url
+from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -78,15 +78,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+# Database Configuration
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('POSTGRES_URL'),
-        conn_max_age=600,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# Override with PostgreSQL in production
+if not DEBUG:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.getenv('DATABASE_URL'),
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
 
 
 # Password validation
