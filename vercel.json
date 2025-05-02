@@ -8,13 +8,6 @@
                 "maxLambdaSize": "15mb",
                 "runtime": "python3.9"
             }
-        },
-        {
-            "src": "build.sh",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "staticfiles"
-            }
         }
     ],
     "routes": [
@@ -29,9 +22,6 @@
     ],
     "env": {
         "PYTHON_VERSION": "3.9",
-        "DATABASE_URL": "postgresql://postgres:Emmy5686.@db.nmsfoiydggaayocpajgs.supabase.co:5432/postgres",
-        "DJANGO_SETTINGS_MODULE": "portfolio.settings",
-        "ALLOWED_HOSTS": ".vercel.app",
-        "DEBUG": "False"
+        "DATABASE_URL": "postgresql://postgres:Emmy5686.@db.nmsfoiydggaayocpajgs.supabase.co:5432/postgres"
     }
 }
