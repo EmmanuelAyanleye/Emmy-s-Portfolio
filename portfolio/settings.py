@@ -81,8 +81,10 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 # Database Configuration
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'OPTIONS': {
+            'driver': 'pg8000',
+        },
     }
 }
 
@@ -90,7 +92,8 @@ DATABASES = {
 if not DEBUG:
     DATABASES['default'] = dj_database_url.config(
         conn_max_age=600,
-        ssl_require=True
+        ssl_require=True,
+        engine='django.db.backends.postgresql'
     )
 
 
